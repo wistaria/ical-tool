@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_ical_tool_env.sh
+source "$script_dir/_ical_tool_env.sh"
+venv_dir="$(ical_tool_venv "$script_dir")"
+exec "$venv_dir/bin/python" -I -B "$script_dir/ical-tool.py" "$@"
